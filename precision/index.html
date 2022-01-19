@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Precision Game</title>
+		<meta name="description" content="Precision Game" />
+		<meta charset="UTF-8" />
+		<meta name="version" content="1.0.0" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="css/index.css">
+	</head>
+
+	<body>
+        <main>
+            <!-- <button type="submit" onClick="window.location.reload()">Reload</button> -->
+            <section id="game-bound">
+                <canvas id="canvas" width="1000" height="600"></canvas>
+                <img id="car" src="./images/car-green.svg" />
+                <img id="parking" src="./images/parking-green.svg" />
+                <!-- <div id="timer"></div>
+                <div id="result">Result:</div>
+                <div id="matching">Matching:</div>                                                                -->
+            </section>
+            <div id="timer">Time: </div>
+            <button id="submit" onclick="submitGame()"></button>
+
+            <div>result image: </div>
+            <div id="result-image"></div>
+        </main>
+	</body>
+</html>
+
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="settings.js"></script>
+<script src="main.js"></script>

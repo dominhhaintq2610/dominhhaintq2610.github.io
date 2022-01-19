@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bizibuz Game</title>
+		<meta name="description" content="Bizibuz Game" />
+		<meta charset="UTF-8" />
+		<meta name="version" content="1.0.0" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+	</head>
+
+	<body>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			html {
+				height: 100%;
+				width: 100%;
+			}
+			body {
+				background-color: #e8c562;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+				width: 100%;
+				padding: 20px;
+			}
+			body > main {
+				height: 100%;
+				aspect-ratio: calc(4 / 3);
+				box-shadow: 0 0 10px black;
+				display: flex;
+				flex-direction: column;
+				justify-content: stretch;
+				align-items: stretch;
+				border: solid 1vmin white;
+				background-color: lightgray;
+			}
+			body > main > header {
+				background-color: #e8c562;
+				height: 20vmin;
+				flex-grow: 0;
+				margin: 2px;
+				border: solid 2vmin white;
+			}
+			body > main > header > img {
+				height: 100%;
+			}
+			body > main > footer {
+				background-color: white;
+				height: 1px;
+				flex-grow: 1;
+				margin: 2px;
+				margin-top: 1vmin;
+			}
+			body > main > footer > iframe {
+				border: none;
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+
+		<main>
+			<header>
+				<img src="./assets/logo.svg" />
+			</header>
+			<footer>
+				<iframe id="game-frame"></iframe>
+			</footer>
+		</main>
+
+		<script>
+			document.querySelector("iframe").focus();
+			const urlSearchParams = new URLSearchParams(window.location.search);
+    	const params = Object.fromEntries(urlSearchParams.entries());
+			document.getElementById('game-frame').src = `./${params.game}/index.html?level=${params.level}`
+		</script>
+	</body>
+</html>
