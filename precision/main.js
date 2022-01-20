@@ -361,13 +361,26 @@ function submitGame() {
     this.stopTimer();
 
     html2canvas(document.getElementById('game-bound')).then(function(canvas) {
-        document.getElementById('result-image').innerHTML = "";
-        document.getElementById('result-image').append(canvas);
+        // document.getElementById('result-image').innerHTML = "";
+        // document.getElementById('result-image').append(canvas);
         // const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
         // const a = document.createElement('a')
         // a.setAttribute('download', 'my-image.png')
         // a.setAttribute('href', image)
         // a.click()
         // canvas.remove()
+        fetch('https://api.imgur.com/3/image', { // Your POST endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({image: canvas.toDataURL('image/png')})
+        }).then(
+            response => response.json() // if the response is a JSON object
+        ).then(
+            success => console.log(success) // Handle the success response object
+        ).catch(
+            error => console.log(error) // Handle the error response object
+        );
     });  
 }
