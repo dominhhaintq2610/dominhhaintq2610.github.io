@@ -11,7 +11,7 @@ bizibuz-game {
 	height: 100%;
 	width: 100%;
 	position: relative;
-	background-color: rgb(235 185 118);
+	background-color: palegreen;
 	font-family: system-ui, sans-serif;
 }
 
@@ -76,7 +76,8 @@ bizibuz-game > main {
 }
 
 bizibuz-game > main > div {
-	width: 30px;
+	/* width: 30px; */
+	width: 15px;
 	height: 20vmin;
 	background-color: white;
 	position: absolute;

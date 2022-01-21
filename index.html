@@ -76,6 +76,7 @@
 			document.querySelector("iframe").focus();
 			const urlSearchParams = new URLSearchParams(window.location.search);
     	const params = Object.fromEntries(urlSearchParams.entries());
+			// document.getElementById('game-frame').src = `./${params.game}-instruction/instruction.html?level=${params.level}`
 			document.getElementById('game-frame').src = `./${params.game}/index.html?level=${params.level}`
 		</script>
 	</body>
