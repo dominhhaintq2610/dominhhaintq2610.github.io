@@ -12,6 +12,7 @@ bizibuz-game {
 	width: 100%;
 	position: relative;
 	background-color: palegreen;
+	background-color: rgba(250, 173, 20, 0.16);
 	font-family: system-ui, sans-serif;
 }
 
@@ -36,7 +37,23 @@ bizibuz-game > footer {
 }
 
 bizibuz-game > header {
-	background-color: rgb(141 247 140);
+	/* background-color: rgb(141 247 140); */
+	background-color: rgb(254 242 217);
+	/* background-color: rgb(217, 207, 186); */
+	padding: 0;
+	justify-content: normal;
+}
+
+bizibuz-game > header > div {
+	padding-top: 20px;
+}
+
+bizibuz-game > header > div > p {
+	margin: 10px 0;
+}
+
+bizibuz-game > header > img {
+	padding-top: 20px;
 }
 
 bizibuz-game > header.off,
