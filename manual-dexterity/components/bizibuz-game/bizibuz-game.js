@@ -52,55 +52,7 @@ window.customElements.define(
 
 			this.#ATTEMPTS_LEFT = LEVEL.maxAttempts;
 
-			window.addEventListener("keydown", (e) => {
-				switch (e.code) {
-					case "KeyD":
-						this.#D = true;
-						break;
-					case "KeyE":
-						this.#E = true;
-						break;
-					case "KeyJ":
-						this.#J = true;
-						break;
-					case "KeyI":
-						this.#I = true;
-						break;
-				}
-			});
-			window.addEventListener("keyup", (e) => {
-				switch (e.code) {
-					case "KeyD":
-						this.#D = false;
-						break;
-					case "KeyE":
-						this.#E = false;
-						break;
-					case "KeyJ":
-						this.#J = false;
-						break;
-					case "KeyI":
-						this.#I = false;
-						break;
-				}
-			});
-
-			window.addEventListener(
-				"keypress",
-				() => {
-					this.querySelector(":scope > header").addEventListener(
-						"transitionend",
-						() => {
-							this.timesup();
-							this.movepaddle();
-							this.moveball();
-						},
-						{ once: true }
-					);
-					this.querySelector(":scope > header").classList.add("off");
-				},
-				{ once: true }
-			);
+			document.getElementById('btn-play').addEventListener('click', () => { this.play() });
 		}
 
 		movepaddle() {
@@ -232,6 +184,109 @@ window.customElements.define(
 					uid: UID
 				})
 			});
+		}
+
+		play() {
+			document.getElementById('game-before').style.display = 'none';
+			this.playAudio();
+			this.playGif();
+		}
+		
+		playAudio() {
+			var audio = new Audio('./assets/instruction_en.mp4');
+			audio.play();
+			audio.addEventListener("ended", () => {
+				audio.currentTime = 0;
+				this.endInstruction();
+			})
+		}
+		
+		playGif() {
+			var footballGif = document.getElementById('football_gif');
+			var keyboardGif = document.getElementById('keyboard_gif');
+			footballGif.src = "./assets/football.gif" + "?a=" + Math.random();
+			keyboardGif.src = "./assets/keyboard.gif" + "?a=" + Math.random();
+		}
+		
+		endInstruction() {
+			var instructionTxt = document.getElementById('instruction_txt');
+			instructionTxt.classList.add('hidden');
+			
+			var instructionEndTxt = document.getElementById('instruction_end_txt');
+			// instructionEndTxt.classList.remove('hidden');
+			if (instructionEndTxt.classList.contains('hidden')) {
+				instructionEndTxt.classList.remove('hidden');
+				setTimeout(function () {
+					instructionEndTxt.classList.remove('visuallyhidden');
+				}, 20);
+			} else {
+				instructionEndTxt.classList.add('visuallyhidden');    
+				instructionEndTxt.addEventListener('transitionend', function(e) {
+					instructionEndTxt.classList.add('hidden');
+				}, {
+					capture: false,
+					once: true,
+					passive: false
+				});
+			}
+		
+			this.setupStartTrial()
+		}
+		
+		setupStartTrial() {
+			this.setupEventListener();
+		}
+
+		setupEventListener() {
+			window.addEventListener("keydown", (e) => {
+				switch (e.code) {
+					case "KeyD":
+						this.#D = true;
+						break;
+					case "KeyE":
+						this.#E = true;
+						break;
+					case "KeyJ":
+						this.#J = true;
+						break;
+					case "KeyI":
+						this.#I = true;
+						break;
+				}
+			});
+			window.addEventListener("keyup", (e) => {
+				switch (e.code) {
+					case "KeyD":
+						this.#D = false;
+						break;
+					case "KeyE":
+						this.#E = false;
+						break;
+					case "KeyJ":
+						this.#J = false;
+						break;
+					case "KeyI":
+						this.#I = false;
+						break;
+				}
+			});
+
+			window.addEventListener(
+				"keypress",
+				() => {
+					this.querySelector(":scope > header").addEventListener(
+						"transitionend",
+						() => {
+							this.timesup();
+							this.movepaddle();
+							this.moveball();
+						},
+						{ once: true }
+					);
+					this.querySelector(":scope > header").classList.add("off");
+				},
+				{ once: true }
+			);
 		}
 	}
 );
