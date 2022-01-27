@@ -42,8 +42,8 @@ window.customElements.define(
 		#BALL;
 		#FIELD;
 
-		MAP_WIDTH = 400;
-		MAP_HEIGHT = 280;
+		MAP_WIDTH = 800;
+		MAP_HEIGHT = 400;
 
 		constructor() {
 			super();
@@ -65,9 +65,9 @@ window.customElements.define(
 			this.#ATTEMPTS_LEFT = LEVEL.maxAttempts;
 
 			// this.setupStepBeforePlay();
-			// this.setupStepPlay();
+			this.setupStepPlay();
 			// this.setupStepAfterTrial();
-			this.setupStepInstructions();
+			// this.setupStepInstructions();
 		}
 
 		movepaddle() {

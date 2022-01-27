@@ -3,8 +3,8 @@ const LEVELS = [
 		ballSpeed: 3,
 		paddleSpeed: 3,
 		paddleHeight: 15,
-		maxAttempts: 1,
-		maxTimeInSeconds: 10
+		maxAttempts: 10,
+		maxTimeInSeconds: 100
 	},
 	{
 		ballSpeed: 10,

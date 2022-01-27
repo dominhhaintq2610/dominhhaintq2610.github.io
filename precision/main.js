@@ -500,5 +500,6 @@ function playAudio() {
 }
 
 function nextGame() {
-    window.parent.nextGame();
+    this.submitGame();
+    // window.parent.nextGame();
 }

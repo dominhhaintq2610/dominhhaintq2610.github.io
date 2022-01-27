@@ -1,7 +1,7 @@
 @import "./normalize.css";
 
 :root {
-	font-size: 2vmin;
+	font-size: 18px;
 }
 
 bizibuz-game {
@@ -12,8 +12,8 @@ bizibuz-game {
 	width: 100%;
 	position: relative;
 	/* background-color: palegreen; */
-	background-color: rgba(250, 173, 20, 0.16);
-	font-family: system-ui, sans-serif;
+	/* background-color: rgba(250, 173, 20, 0.16); */
+	/* font-family: system-ui, sans-serif; */
 }
 
 bizibuz-game > header,
@@ -38,7 +38,7 @@ bizibuz-game > footer {
 
 bizibuz-game > header {
 	/* background-color: rgb(141 247 140); */
-	background-color: rgb(254 242 217);
+	/* background-color: rgb(254 242 217); */
 	/* background-color: rgb(217, 207, 186); */
 	padding: 0;
 	justify-content: normal;
@@ -86,13 +86,15 @@ bizibuz-game > main > #game-area {
 
 @media (min-aspect-ratio: 1400 / 980) {
 	bizibuz-game > main > #game-area {
-		width: 400px;
+		width: 800px;
+		height: 400px;
 	}
 }
 
 @media (max-aspect-ratio: 1400 / 980) {
 	bizibuz-game > main > #game-area {
-		width: 400px;
+		width: 800px;
+		height: 400px;
 	}
 }
 
@@ -159,7 +161,7 @@ button:hover{
 }
 
 #instruction_txt, #instruction_end_txt {
-	font-size: 14px;
+	font-size: 18px;
 	width: 660px;
 	margin: 0 auto;
 }
