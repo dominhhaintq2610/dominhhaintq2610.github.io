@@ -246,6 +246,8 @@ window.customElements.define(
 					passive: false
 				});
 			}
+
+			document.getElementById('keyboard_gif').src = './assets/tutorial.jpeg'
 		
 			this.setupPressEventListenerToPlay()
 		}
