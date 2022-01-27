@@ -6,6 +6,7 @@ body {
     height: 100%;
     margin: 0 8px;
     overflow-y: hidden;
+    background-color: rgb(254 242 217);
 }
 
 main {
@@ -131,4 +132,16 @@ button:hover {
 
 .visuallyhidden {
   opacity: 0 !important;
+}
+
+.instructions_txt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions_txt > img {
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
 }

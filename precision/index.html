@@ -10,31 +10,41 @@
 	</head>
 
 	<body>
-        <main>
-            <section>
-                <p style="text-align: center;">Use your mouse to push the car along the track to the [insert P] parking sign. Trace the track!</p>
-            </section>
-            <section id="game-bound" class="step-play-trial step-play-final">
-                <canvas id="canvas" width="1000" height="600"></canvas>
-                <img id="car" src="./images/car-green.svg" />
-                <img id="parking" src="./images/parking-green.svg" />
-            </section>
-            <div class="step-after-trial popup-area hidden">
-							<div class="popup">
-								<p>Trial game score: 99</p>
-								<p>Tip: trace even more carefully!</p>
-								<button id="btn-play-final" type="button">Final game next</button>
-							</div>
-						</div>
-            <div class="step-after-final popup-area hidden">
-							<div class="popup">
-								<p>Game over</p>
-								<button id="btn-next-game" type="button">Next game</button>
-							</div>
-						</div>
-            <!-- <div id="timer">Time: </div>
-            <button id="submit" onclick="submitGame()"></button> -->
-        </main>
+		<main>
+			<section class="step-before-play hidden">
+				<div class="popup-area">
+					<button id="btn-play" type="button">Click To Play</button>
+				</div>
+			</section>
+			<section class="step-instructions">
+				<div class="popup-area" style="background-color: transparent;"></div>
+			</section>
+			<section class="step-instructions step-play-trial step-after-trial step-play-final step-after-final">
+					<div class="instructions_txt" style="margin-top: 10px;">
+						Use your mouse to push the car along the track to the <img src="./images/parking-green.svg" /> parking sign. Trace the track!
+					</div>
+			</section>
+			<section id="game-bound" class="step-instructions step-play-trial step-play-final">
+					<canvas id="canvas" width="1000" height="600"></canvas>
+					<img id="car" src="./images/car-green.svg" />
+					<img id="parking" src="./images/parking-green.svg" />
+			</section>
+			<div class="step-after-trial popup-area hidden">
+				<div class="popup">
+					<p>Trial game score: 99</p>
+					<p>Tip: trace even more carefully!</p>
+					<button id="btn-play-final" type="button">Final game next</button>
+				</div>
+			</div>
+			<div class="step-after-final popup-area hidden">
+				<div class="popup">
+					<p>Game over</p>
+					<button id="btn-next-game" type="button">Next game</button>
+				</div>
+			</div>
+				<!-- <div id="timer">Time: </div>
+				<button id="submit" onclick="submitGame()"></button> -->
+		</main>
 	</body>
 </html>
 

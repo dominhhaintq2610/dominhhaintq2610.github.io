@@ -1,11 +1,13 @@
 const LINE_TYPE_X = 1, 
     LINE_TYPE_Y = 2, 
     DELTA = 8,
+    STEP_BEFORE_PLAY = 'step-before-play',
+    STEP_INSTRUCTIONS = 'step-instructions',
     STEP_PLAY_TRIAL = 'step-play-trial',
     STEP_AFTER_TRIAL = 'step-after-trial',
     STEP_PLAY_FINAL = 'step-play-final',
     STEP_AFTER_FINAL = 'step-after-final',
-    STEPS = [STEP_PLAY_TRIAL, STEP_AFTER_TRIAL, STEP_PLAY_FINAL, STEP_AFTER_FINAL];
+    STEPS = [STEP_BEFORE_PLAY, STEP_INSTRUCTIONS, STEP_PLAY_TRIAL, STEP_AFTER_TRIAL, STEP_PLAY_FINAL, STEP_AFTER_FINAL];
 
 var car, parking, gameBound, matching, result, canvas, ctx, timer
     pressCar = false,
@@ -29,7 +31,8 @@ var lineColor = "rgb(191, 32, 38)",
 
 var startX, startY, endX, endY;
 
-setupStepPlayTrial();
+setupStepBeforePlay();
+// setupStepPlayTrial();
 init();
 // drawRuler();
 
@@ -406,7 +409,6 @@ function submitGame() {
 }
 
 function showStep(initStep) {
-    console.log(initStep);
     currentStep = initStep;
 
     STEPS.forEach((step) => {
@@ -444,6 +446,18 @@ function showStep(initStep) {
     // }
 }
 
+function setupStepBeforePlay() {
+    this.showStep(STEP_BEFORE_PLAY);
+    document.getElementById('btn-play').addEventListener('click', () => {
+        this.setupStepInstructions();
+    });
+}
+
+function setupStepInstructions() {
+    this.showStep(STEP_INSTRUCTIONS);
+    this.playAudio();
+}
+
 function setupStepPlayTrial() {
     this.showStep(STEP_PLAY_TRIAL);
 }
@@ -474,6 +488,15 @@ function handleAfterPlay() {
     } else {
         this.setupStepAfterFinal();
     }
+}
+
+function playAudio() {
+    var audio = new Audio('./assets/instruction_en.mp4');
+    audio.play();
+    audio.addEventListener("ended", () => {
+        audio.currentTime = 0;
+        this.setupStepPlayTrial();
+    })
 }
 
 function nextGame() {
