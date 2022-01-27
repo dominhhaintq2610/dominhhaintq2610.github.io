@@ -73,7 +73,7 @@ bizibuz-game > header > p:last-child {
 	opacity: 0.5;
 }
 
-bizibuz-game > main {
+bizibuz-game > main > #game-area {
 	position: relative;
 	display: block;
 	aspect-ratio: calc(1400 / 980);
@@ -85,20 +85,20 @@ bizibuz-game > main {
 }
 
 @media (min-aspect-ratio: 1400 / 980) {
-	bizibuz-game > main {
-		height: 100vh;
+	bizibuz-game > main > #game-area {
+		width: 400px;
 	}
 }
 
 @media (max-aspect-ratio: 1400 / 980) {
-	bizibuz-game > main {
-		width: 100vw;
+	bizibuz-game > main > #game-area {
+		width: 400px;
 	}
 }
 
-bizibuz-game > main > div {
-	width: 30px;
-	height: 20vmin;
+bizibuz-game > main > #game-area > div {
+	width: 20px;
+	height: 10px;
 	background-color: white;
 	position: absolute;
 	top: 50%;
@@ -108,34 +108,34 @@ bizibuz-game > main > div {
 	border-radius: 10px;
 }
 
-bizibuz-game > main > div.paddle-1 {
+bizibuz-game > main > #game-area > div.paddle-1 {
 	left: 0;
 }
 
-bizibuz-game > main > div.paddle-2 {
+bizibuz-game > main > #game-area > div.paddle-2 {
 	right: 0;
 }
 
-bizibuz-game > main > img {
-	height: 10vmin;
-	width: 10vmin;
+bizibuz-game > main > #game-area > img {
+	height: 7vmin;
+	width: 7vmin;
 	filter: drop-shadow(0 2px 5px black);
 	overflow: visible;
 	transform-origin: center;
 	position: absolute;
 	top: 50%;
-	margin-top: -5vmin;
+	margin-top: -3.5vmin;
 	left: 50%;
-	margin-left: -5vmin;
+	margin-left: -3.5vmin;
 	transition: opacity 1s;
 }
 
-bizibuz-game > main > img.off {
+bizibuz-game > main > #game-area > img.off {
 	transform: scale(0);
 	opacity: 0;
 }
 
-#game-before {
+#step-before-play {
 	z-index: 10;
 	width: 100%;
 	height: 100%;
@@ -146,11 +146,12 @@ bizibuz-game > main > img.off {
 	align-items: center;
 }
 
-#game-before button {
-	background: #e8c562;
+button {
+	background: #fdcc33;
 	padding: 8px 15px;
 	font-weight: 500;
-	border-radius: 5px;
+	border-radius: 10px;
+	border: none;
 }
 
 button:hover{
@@ -164,9 +165,33 @@ button:hover{
 }
 
 .d-none, .hidden {
-	display: none;
+	display: none !important;
 }
 
 .visuallyhidden {
-  opacity: 0;
+  opacity: 0 !important;
+}
+
+#step-play {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#step-play > #game-area {
+	margin-bottom: 30px;
+}
+
+#step-after-trial > #popup, #step-after-final > #popup {
+	background: white;
+	width: 300px;
+	padding: 20px;
+	text-align: center;
+	border: 3px solid #fdcc33;
+	border-radius: 20px;
+}
+
+#step-after-trial > #popup > p, #step-after-final > #popup > p {
+	margin-bottom: 10px;
 }

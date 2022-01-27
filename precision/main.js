@@ -1,4 +1,11 @@
-const LINE_TYPE_X = 1, LINE_TYPE_Y = 2, DELTA = 8;
+const LINE_TYPE_X = 1, 
+    LINE_TYPE_Y = 2, 
+    DELTA = 8,
+    STEP_PLAY_TRIAL = 'step-play-trial',
+    STEP_AFTER_TRIAL = 'step-after-trial',
+    STEP_PLAY_FINAL = 'step-play-final',
+    STEP_AFTER_FINAL = 'step-after-final',
+    STEPS = [STEP_PLAY_TRIAL, STEP_AFTER_TRIAL, STEP_PLAY_FINAL, STEP_AFTER_FINAL];
 
 var car, parking, gameBound, matching, result, canvas, ctx, timer
     pressCar = false,
@@ -10,23 +17,30 @@ var car, parking, gameBound, matching, result, canvas, ctx, timer
     positions = [],
     number = 0,
     dir = 0,
-    time = 60,
+    time = 10,
     intervalTimer = null,
     currentLevel = 0,
-    isParking = false;
+    isParking = false,
+    isTrial = true,
+    currentStep = STEP_PLAY_TRIAL;
 
 var lineColor = "rgb(191, 32, 38)",
     lineWidth = 6;
 
 var startX, startY, endX, endY;
 
-initLevel();
-initOthers();
-initCar();
-initParking();
-drawMap();
+setupStepPlayTrial();
+init();
 // drawRuler();
-initTimer();
+
+function init() {
+    initLevel();
+    initOthers();
+    initCar();
+    initParking();
+    drawMap();
+    // initTimer();
+}
 
 function initLevel() {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -48,10 +62,10 @@ function startTimer() {
 
     intervalTimer = setInterval(function() {
         time--;
-        timer.textContent = `Time: ${time}`;
+        // timer.textContent = `Time: ${time}`;
 
         if (time == 0) {
-            this.stopTimer()
+            this.handleAfterPlay()
         }
     }, 1000)
 }
@@ -67,6 +81,7 @@ function initCar() {
     car.style.width = `${LEVELS[currentLevel].CAR_SETTING.w}px`;
     car.style.height = `${LEVELS[currentLevel].CAR_SETTING.h}px`;
     car.src = `./images/${LEVELS[currentLevel].CAR_SETTING.i}`;
+    car.style.transform = `rotate(0deg)`
 }
 
 function initParking() {
@@ -102,10 +117,15 @@ function drawRuler() {
 function drawMap() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     w = canvas.width;
     h = canvas.height;
 
     ctx.setLineDash([10, 4]);
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = '1';
+    ctx.lineJoin = 'miter';
+    ctx.lineCap = 'butt';
     ctx.beginPath();
 
     let position;
@@ -152,9 +172,9 @@ function findxy(res, e) {
     }
 
     if (res == 'up' || res == "out") {
-        // if (pressCar && this.isMouseOnParking(px, py)) {
-        //     this.stopTimer();
-        // }
+        if (pressCar && this.isMouseOnParking(px, py)) {
+            this.handleAfterPlay();
+        }
 
         pressCar = false;
         startMove = false;
@@ -383,4 +403,79 @@ function submitGame() {
             error => console.log(error) // Handle the error response object
         );
     });  
+}
+
+function showStep(initStep) {
+    console.log(initStep);
+    currentStep = initStep;
+
+    STEPS.forEach((step) => {
+        let elements = document.getElementsByClassName(step);
+
+        if (step != initStep) {
+            Array.from(elements).forEach((element) => {
+                element.classList.add('hidden');
+            })
+        }
+    });
+
+    STEPS.forEach((step) => {
+        let elements = document.getElementsByClassName(step);
+
+        if (step == initStep) {
+            Array.from(elements).forEach((element) => {
+                element.classList.remove('hidden');
+            })
+        }
+    });
+    // document.getElementsByClassName(STEP_PLAY_TRIAL).classList.add('hidden');
+    // document.getElementsByClassName(STEP_AFTER_TRIAL).classList.add('hidden');
+    // document.getElementsByClassName(STEP_PLAY_FINAL).classList.add('hidden');
+    // document.getElementsByClassName(STEP_AFTER_FINAL).classList.add('hidden');
+    // document.getElementsByClassName(step).classList.remove('hidden');
+
+    // switch (step) {
+    //     case STEP_PLAY_FINAL:
+    //         document.getElementById(STEP_PLAY).classList.remove('hidden');
+    //         break;
+    //     default:
+    //         document.getElementById(step).classList.remove('hidden');
+    //         break;
+    // }
+}
+
+function setupStepPlayTrial() {
+    this.showStep(STEP_PLAY_TRIAL);
+}
+
+function setupStepAfterTrial() {
+    this.showStep(STEP_AFTER_TRIAL);
+    document.getElementById('btn-play-final').addEventListener('click', () => {
+        this.setupStepPlayFinal();
+    });
+}
+
+function setupStepPlayFinal() {
+    this.init();
+    this.showStep(STEP_PLAY_FINAL);
+}
+
+function setupStepAfterFinal() {
+    this.showStep(STEP_AFTER_FINAL);
+    document.getElementById('btn-next-game').addEventListener('click', () => {
+        this.nextGame();
+    });
+}
+
+function handleAfterPlay() {
+    this.stopTimer()
+    if (currentStep == STEP_PLAY_TRIAL) {
+        this.setupStepAfterTrial();
+    } else {
+        this.setupStepAfterFinal();
+    }
+}
+
+function nextGame() {
+    window.parent.nextGame();
 }

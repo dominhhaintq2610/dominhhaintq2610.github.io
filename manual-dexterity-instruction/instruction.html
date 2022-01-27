@@ -8,104 +8,119 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 	</head>
 
-	<body>
+	<body style="background-color: rgba(250, 173, 20, 0.16);">
     <main>
-      <iframe id="game-frame" src="./index.html" width="100%" height="200px"></iframe>
-      <section id="keyboard-area" style="width: 100%; position: relative;">
+      <!-- <iframe id="game-frame" src="./index.html" width="100%" height="200px" style="border: none;"></iframe> -->
+      <img id="football_gif" src="./assets/football.gif" alt="" style="width: 280px; margin: 0 auto; display: block;">
+      <div style="font-size: 14px; width: 660px; margin: 0 auto;">
+        <p>Choose your preferred hand. Place it on the keyboard. </p>
+        <p>Use your thumb and first finger on the coloured keys to move the paddles up and down. </p>
+        <p>Hit the ball with the paddle!</p>
+        <p>Press any key to continue.</p>
+      </div>
+      <section id="keyboard-area" style="width: 60%; position: relative; margin: 0 auto;">
         <img id="keyboard" src="./assets/keyboard01.png" style="width: 100%;"/>
         <img id="mouse" src="./assets/right-hand.png" 
-        style="width: 150px; position: absolute; top: 170px; left: 400px; transition: 0.5s ease-in;"/>
+        style="width: 90px; position: absolute; top: 80px; left: 250px; transform: rotate(0deg); transition: 1s ease-in;"/>
       </section>
+      <button onclick="play()">Play</button>
+      <audio id="audio" controls>
+        <source src="horse.ogg" type="audio/ogg">
+        <source src="./assets/instruction_en.mp4" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </main>
 	</body>
 </html>
 
 <script>
-  const BTN_E = {x: 240, y: 120}, BTN_D = {x: 260, y: 170}, BTN_I = {x: 520, y: 120}, BTN_J = {x: 480, y: 170};
+  var audio = document.getElementById('audio');
+  var footballGif = document.getElementById('football_gif');
+  function play() {
+    audio.play()
+    footballGif.src = "./assets/football.gif" + "?a=" + Math.random();
+    playKeyboard()
+  }
+  // setTimeout(() => {
+  //   console.log('auto')
+  //   audio.pause()
+  // }, 10000)
+  // setTimeout(() => {
+  //   console.log('auto')
+  //   audio.play()
+  // }, 20000)
+  // document.body.addEventListener("mousemove", function () {
+  //     audio.play()
+  // })    
+  // audio.play();
+  // const BTN_E = {x: 170, y: 80}, BTN_D = {x: 170, y: 100}, BTN_I = {x: 340, y: 80}, BTN_J = {x: 320, y: 100};
+  const BTN_E = {x: 185, y: 55}, BTN_D = {x: 185, y: 55}, BTN_I = {x: 370, y: 70}, BTN_J = {x: 370, y: 70};
   let keyboard = document.getElementById('keyboard');
   let mouse = document.getElementById('mouse');
   let mousePositions = [
-    {press: 'D'},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {press: 'E'},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {press: 'J'},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {press: 'D'},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {press: 'I'},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {press: 'D'},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {stop: true},
-    {press: 'J'},
+    {press: 'J'}, {press: 'J'}, {press: 'J'}, {press: 'J'}, {press: 'J'}, {press: 'J'},
+    {press: 'STOP'}, {press: 'STOP'}, 
+    {press: 'I'}, {press: 'I'}, {press: 'I'}, {press: 'I'}, {press: 'I'}, {press: 'I'},
+    {press: 'MOVE_LEFT'},
+    {press: 'D'}, {press: 'D'}, {press: 'D'}, {press: 'D'}, {press: 'D'}, {press: 'D'},
+    {press: 'STOP'}, {press: 'STOP'},
+    {press: 'E'}, {press: 'E'}, {press: 'E'}, {press: 'E'}, {press: 'E'}, {press: 'E'},
+    {press: 'STOP'}, {press: 'STOP'},
+    {press: 'D'}, {press: 'D'}, {press: 'D'}, {press: 'D'}, {press: 'D'}, {press: 'D'},
+    {press: 'STOP'},
   ];
   let mousePosition = 0;
-  setTimeout(() => {
-    let interval = setInterval(() => {
-      if (mousePositions[mousePosition].stop == undefined || !mousePositions[mousePosition].stop) {
-        switch (mousePositions[mousePosition].press) {
-          case 'D':
-            mouse.style.left = `${BTN_D.x}px`;
-            mouse.style.top = `${BTN_D.y}px`;
-            keyboard.src = `./assets/keyboardD.png`;
-            break;
-          case 'E':
-            mouse.style.left = `${BTN_E.x}px`;
-            mouse.style.top = `${BTN_E.y}px`;
-            keyboard.src = `./assets/keyboardE.png`;
-            break;
-          case 'I':
-            mouse.style.left = `${BTN_I.x}px`;
-            mouse.style.top = `${BTN_I.y}px`;
-            keyboard.src = `./assets/keyboardI.png`;
-            break;
-          case 'J':
-            mouse.style.left = `${BTN_J.x}px`;
-            mouse.style.top = `${BTN_J.y}px`;
-            keyboard.src = `./assets/keyboardJ.png`;
-            break;
-        }
-      }
-      mousePosition++;
 
-      if (mousePosition >= mousePositions.length) {
-        clearInterval(interval);
-      }
-    }, 300);
-  }, 1000);
+  function playKeyboard() {
+    setTimeout(() => {
+      let interval = setInterval(() => {
+        if (mousePositions[mousePosition].stop == undefined || !mousePositions[mousePosition].stop) {
+          switch (mousePositions[mousePosition].press) {
+            case 'D':
+              mouse.style.transform = 'rotate(-20deg)'
+              mouse.style.left = `${BTN_D.x}px`;
+              mouse.style.top = `${BTN_D.y}px`;
+              keyboard.src = `./assets/keyboardD.png`;
+              break;
+            case 'E':
+              mouse.style.transform = 'rotate(-20deg)'
+              mouse.style.left = `${BTN_E.x}px`;
+              mouse.style.top = `${BTN_E.y}px`;
+              keyboard.src = `./assets/keyboardE.png`;
+              break;
+            case 'I':
+              mouse.style.transform = 'rotate(10deg)'
+              mouse.style.left = `${BTN_I.x}px`;
+              mouse.style.top = `${BTN_I.y}px`;
+              keyboard.src = `./assets/keyboardI.png`;
+              break;
+            case 'J':
+              mouse.style.transform = 'rotate(10deg)'
+              mouse.style.left = `${BTN_J.x}px`;
+              mouse.style.top = `${BTN_J.y}px`;
+              keyboard.src = `./assets/keyboardJ.png`;
+              break;
+            case 'MOVE_RIGHT':
+              mouse.style.transform = 'rotate(10deg)'
+              mouse.style.left = `${BTN_I.x}px`;
+              mouse.style.top = `${BTN_I.y}px`;
+              break;
+            case 'MOVE_LEFT':
+              mouse.style.transform = 'rotate(-20deg)'
+              mouse.style.left = `${BTN_E.x}px`;
+              mouse.style.top = `${BTN_E.y}px`;
+              break;
+            default:
+              keyboard.src = `./assets/keyboard01.png`;
+              break;
+          }
+        }
+        mousePosition++;
+
+        if (mousePosition >= mousePositions.length) {
+          clearInterval(interval);
+        }
+      }, 300);
+    }, 9000);
+  }
 </script>

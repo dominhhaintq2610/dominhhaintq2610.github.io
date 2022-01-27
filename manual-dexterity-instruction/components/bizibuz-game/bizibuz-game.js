@@ -34,39 +34,75 @@ window.customElements.define(
 		#BALL;
 		#FIELD;
 
-		INSTRUCTION_STEPS = [
-			'#D', '#D', '#D', '#D', '#D', '#D', '#D',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#E','#E','#E','#E','#E','#E','#E','#E', '#E', '#E', '#E', '#E', '#E', '#E',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#J', '#J', '#J', '#J', '#J', '#J', '#J',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#D', '#D', '#D', '#D', '#D', '#D', '#D',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#D', '#D', '#D','#D', '#D', '#D','#D', '#D', '#D',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#STOP', '#STOP', '#STOP', '#STOP',
-			'#J', '#J', '#J', '#J', '#J',
-		];
+		// INSTRUCTION_STEPS = [
+		// 	'#D', '#D', '#D', '#D', '#D', '#D', '#D',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#E','#E','#E','#E','#E','#E','#E','#E', '#E', '#E', '#E', '#E', '#E', '#E', 
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#J', '#J', '#J', '#J', '#J', '#J', '#J',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', 
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#D', '#D', '#D', '#D', '#D', '#D', '#D',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#I', '#I', '#I', '#I', '#I',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#D', '#D', '#D','#D', '#D', '#D','#D', '#D', '#D',
+		// 	// '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	// '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	// '#J', '#J', '#J', '#J', '#J',
+		// ];
+		
+		// INSTRUCTION_STEPS = [
+		// 	'#D', '#D', '#D', '#D', '#D', '#D', '#D','#D', '#D', '#D', '#D', '#D', 
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#E','#E','#E','#E','#E','#E','#E','#E', '#E', '#E', '#E', '#E', '#E',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#D', '#D', '#D', '#D', '#D', '#D', '#D','#D', '#D', '#D', '#D', '#D', 
+		// 	'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#J', '#J', '#J', '#J', '#J', '#J', '#J','#J', '#J', '#J', '#J', '#J', 
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#J', '#J', '#J', '#J', '#J', '#J', '#J','#J', '#J', '#J', '#J', '#J', 
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// 	'#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I',
+		// 	'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+		// ];
+		INSTRUCTION_STEPS_BEFORE = [
+				'#J', '#J', '#J', '#J', '#J', '#J', '#J','#J', '#J', '#J', '#J', '#J', 
+				'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+				'#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I', '#I',
+				'#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP', '#STOP',
+				'#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', 
+				'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+				'#E', '#E', '#E', '#E', '#E', '#E', '#E', '#E', '#E', '#E', '#E', '#E',
+				'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+				'#STOP', '#STOP', '#STOP', '#STOP','#STOP', '#STOP', '#STOP', '#STOP',
+				'#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', '#D', 
+			];
 		INSTRUCTION_STEP = 0;
 
 		constructor() {
@@ -124,7 +160,7 @@ window.customElements.define(
 			setTimeout(() => {
 				this.timesup();
 				this.movepaddle();
-				this.moveball();
+				// this.moveball();
 	
 				setInterval(() => {
 					this.#D = false;
@@ -132,7 +168,7 @@ window.customElements.define(
 					this.#I = false;
 					this.#J = false;
 	
-					switch (this.INSTRUCTION_STEPS[this.INSTRUCTION_STEP]) {
+					switch (this.INSTRUCTION_STEPS_BEFORE[this.INSTRUCTION_STEP]) {
 						case '#D':
 							this.#D = true;
 							break;
@@ -150,7 +186,11 @@ window.customElements.define(
 					}
 					this.INSTRUCTION_STEP++;
 				}, 100)
-			}, 1000)
+			}, 10000)
+
+			setTimeout(() => {
+				this.moveball();
+			}, 17000)
 		}
 
 		movepaddle() {

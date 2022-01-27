@@ -78,6 +78,25 @@
     	const params = Object.fromEntries(urlSearchParams.entries());
 			// document.getElementById('game-frame').src = `./${params.game}-instruction/instruction.html?level=${params.level}`
 			document.getElementById('game-frame').src = `./${params.game}/index.html?level=${params.level}`
+
+			function nextGame() {
+				console.log('parent');
+				const url = window.location.href
+				var r = new URL(url)
+				r.searchParams.delete('game')
+				r.searchParams.delete('level')
+				
+				let newGame = 'manual-dexterity'
+				switch (params.game) {
+					case 'precision':
+						newGame = 'manual-dexterity';
+						break;
+					case 'manual-dexterity':
+						newGame = 'bilateral-coordination';
+						break;
+				}
+				window.location.href = r.href + `?game=${newGame}`
+			}
 		</script>
 	</body>
 </html>

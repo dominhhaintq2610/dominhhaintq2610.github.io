@@ -2,6 +2,14 @@ const PARAMS = new URLSearchParams(document.location.search);
 const LEVEL_INDEX = parseInt(PARAMS.get("d") || "0");
 const LEVEL = LEVELS[LEVEL_INDEX];
 const UID = PARAMS.get("uid");
+const STEP_BEFORE_PLAY = 'step-before-play';
+const STEP_INSTRUCTIONS = 'step-instructions';
+const STEP_PLAY = 'step-play';
+const STEP_AFTER_TRIAL = 'step-after-trial';
+const STEP_AFTER_PLAY = 'step-after-play';
+const STEP_PLAY_FINAL = 'step-play-final';
+const STEP_AFTER_FINAL = 'step-after-final';
+var currentStep;
 
 window.customElements.define(
 	"bizibuz-game",
@@ -22,6 +30,7 @@ window.customElements.define(
 		#TIMESUP = false;
 		#HISTORY = [];
 		#TIMESUP_HANDLER = 0;
+		
 
 		#D = false;
 		#E = false;
@@ -33,6 +42,9 @@ window.customElements.define(
 		#BALL;
 		#FIELD;
 
+		MAP_WIDTH = 400;
+		MAP_HEIGHT = 280;
+
 		constructor() {
 			super();
 		}
@@ -40,10 +52,10 @@ window.customElements.define(
 		connectedCallback() {
 			super.connectedCallback();
 
-			this.#PADDLE_1 = this.querySelector(":scope > main > div.paddle-1");
-			this.#PADDLE_2 = this.querySelector(":scope > main > div.paddle-2");
-			this.#BALL = this.querySelector(":scope > main > img");
-			this.#FIELD = this.querySelector(":scope > main");
+			this.#PADDLE_1 = this.querySelector(":scope > main > #game-area > div.paddle-1");
+			this.#PADDLE_2 = this.querySelector(":scope > main > #game-area > div.paddle-2");
+			this.#BALL = this.querySelector(":scope > main > #game-area > img");
+			this.#FIELD = this.querySelector(":scope > main > #game-area");
 
 			this.#PADDLE_1.style.height = LEVEL.paddleHeight + "vmin";
 			this.#PADDLE_2.style.height = LEVEL.paddleHeight + "vmin";
@@ -52,23 +64,26 @@ window.customElements.define(
 
 			this.#ATTEMPTS_LEFT = LEVEL.maxAttempts;
 
-			document.getElementById('btn-play').addEventListener('click', () => { this.play() });
+			// this.setupStepBeforePlay();
+			// this.setupStepPlay();
+			// this.setupStepAfterTrial();
+			this.setupStepInstructions();
 		}
 
 		movepaddle() {
-			if (this.#D && this.#PADDLE_1_Y <= window.innerHeight / 2 - this.#PADDLE_1.clientHeight / 2) {
+			if (this.#D && this.#PADDLE_1_Y <= this.MAP_HEIGHT / 2 - this.#PADDLE_1.clientHeight / 2) {
 				this.#PADDLE_1_Y += LEVEL.paddleSpeed;
 				this.#PADDLE_1.style.transform = `translateY(${this.#PADDLE_1_Y}px)`;
 			}
-			if (this.#E && this.#PADDLE_1_Y >= 0 - window.innerHeight / 2 + this.#PADDLE_1.clientHeight / 2) {
+			if (this.#E && this.#PADDLE_1_Y >= 0 - this.MAP_HEIGHT / 2 + this.#PADDLE_1.clientHeight / 2) {
 				this.#PADDLE_1_Y -= LEVEL.paddleSpeed;
 				this.#PADDLE_1.style.transform = `translateY(${this.#PADDLE_1_Y}px)`;
 			}
-			if (this.#J && this.#PADDLE_2_Y <= window.innerHeight / 2 - this.#PADDLE_2.clientHeight / 2) {
+			if (this.#J && this.#PADDLE_2_Y <= this.MAP_HEIGHT / 2 - this.#PADDLE_2.clientHeight / 2) {
 				this.#PADDLE_2_Y += LEVEL.paddleSpeed;
 				this.#PADDLE_2.style.transform = `translateY(${this.#PADDLE_2_Y}px)`;
 			}
-			if (this.#I && this.#PADDLE_2_Y >= 0 - window.innerHeight / 2 + this.#PADDLE_2.clientHeight / 2) {
+			if (this.#I && this.#PADDLE_2_Y >= 0 - this.MAP_HEIGHT / 2 + this.#PADDLE_2.clientHeight / 2) {
 				this.#PADDLE_2_Y -= LEVEL.paddleSpeed;
 				this.#PADDLE_2.style.transform = `translateY(${this.#PADDLE_2_Y}px)`;
 			}
@@ -97,7 +112,7 @@ window.customElements.define(
 				}
 			}
 
-			if (this.#BALL_X <= 0 - window.innerWidth / 2 - this.#BALL.clientWidth) {
+			if (this.#BALL_X <= 0 - this.MAP_WIDTH / 2 - this.#BALL.clientWidth) {
 				this.over();
 				return;
 			}
@@ -114,7 +129,7 @@ window.customElements.define(
 				}
 			}
 
-			if (this.#BALL_X >= window.innerWidth / 2 + this.#BALL.clientWidth) {
+			if (this.#BALL_X >= this.MAP_WIDTH / 2 + this.#BALL.clientWidth) {
 				this.over();
 				return;
 			}
@@ -148,7 +163,12 @@ window.customElements.define(
 			this.#BALL.classList.add("off");
 			this.#ATTEMPTS_LEFT--;
 			if (this.#ATTEMPTS_LEFT <= 0) {
-				this.end();
+				// this.end();
+				if (currentStep == STEP_PLAY) {
+					this.setupStepAfterTrial();
+				} else {
+					this.setupStepAfterFinal();
+				}
 				return;
 			} else {
 				setTimeout(() => {
@@ -187,9 +207,7 @@ window.customElements.define(
 		}
 
 		play() {
-			document.getElementById('game-before').style.display = 'none';
-			this.playAudio();
-			this.playGif();
+			this.setupStepInstructions();
 		}
 		
 		playAudio() {
@@ -213,7 +231,6 @@ window.customElements.define(
 			instructionTxt.classList.add('hidden');
 			
 			var instructionEndTxt = document.getElementById('instruction_end_txt');
-			// instructionEndTxt.classList.remove('hidden');
 			if (instructionEndTxt.classList.contains('hidden')) {
 				instructionEndTxt.classList.remove('hidden');
 				setTimeout(function () {
@@ -230,14 +247,10 @@ window.customElements.define(
 				});
 			}
 		
-			this.setupStartTrial()
-		}
-		
-		setupStartTrial() {
-			this.setupEventListener();
+			this.setupPressEventListenerToPlay()
 		}
 
-		setupEventListener() {
+		setupKeyEventListenerToPlay() {
 			window.addEventListener("keydown", (e) => {
 				switch (e.code) {
 					case "KeyD":
@@ -270,23 +283,82 @@ window.customElements.define(
 						break;
 				}
 			});
+		}
 
+		setupPressEventListenerToPlay() {
 			window.addEventListener(
 				"keypress",
 				() => {
-					this.querySelector(":scope > header").addEventListener(
-						"transitionend",
-						() => {
-							this.timesup();
-							this.movepaddle();
-							this.moveball();
-						},
-						{ once: true }
-					);
-					this.querySelector(":scope > header").classList.add("off");
+					this.setupStepPlay()
 				},
 				{ once: true }
 			);
+		}
+
+		showStep(step) {
+			currentStep = step;
+
+			document.getElementById(STEP_BEFORE_PLAY).classList.add('hidden');
+			document.getElementById(STEP_INSTRUCTIONS).classList.add('hidden');
+			document.getElementById(STEP_PLAY).classList.add('hidden');
+			document.getElementById(STEP_AFTER_PLAY).classList.add('hidden');
+			document.getElementById(STEP_AFTER_TRIAL).classList.add('hidden');
+
+			switch (step) {
+				case STEP_PLAY_FINAL:
+					document.getElementById(STEP_PLAY).classList.remove('hidden');
+					break;
+				default:
+					document.getElementById(step).classList.remove('hidden');
+					break;
+			}
+		}
+
+		setupStepBeforePlay() {
+			this.showStep(STEP_BEFORE_PLAY)
+			document.getElementById('btn-play').addEventListener('click', () => { this.play() });
+		}
+
+		setupStepInstructions() {
+			this.showStep(STEP_INSTRUCTIONS)
+			this.playAudio();
+			this.playGif();
+		}
+
+		setupStepPlay() {
+			this.showStep(STEP_PLAY)
+			this.setupKeyEventListenerToPlay();
+			this.timesup();
+			this.movepaddle();
+			this.moveball();
+		}
+
+		setupStepAfterTrial() {
+			this.showStep(STEP_AFTER_TRIAL)
+			document.getElementById('btn-play-final').addEventListener('click', () => {this.setupStepPlayFinal()})
+		}
+
+		setupStepPlayFinal() {
+			this.showStep(STEP_PLAY_FINAL)
+			this.#ATTEMPTS_LEFT = 1;
+			setTimeout(() => {
+				this.#BALL.classList.remove("off");
+				setTimeout(() => {
+					this.timesup();
+					this.moveball();
+				}, 1000);
+			}, 1000);
+		}
+
+		setupStepAfterFinal() {
+			this.showStep(STEP_AFTER_FINAL)
+			document.getElementById('btn-next-game').addEventListener('click', () => {
+        this.nextGame();
+    	});
+		}
+
+		nextGame() {
+			window.parent.nextGame();
 		}
 	}
 );
