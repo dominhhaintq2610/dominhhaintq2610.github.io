@@ -1,7 +1,7 @@
 @import "./normalize.css";
 
 :root {
-	font-size: 2vmin;
+	font-size: 18px;
 }
 
 bizibuz-game {
@@ -11,8 +11,9 @@ bizibuz-game {
 	height: 100%;
 	width: 100%;
 	position: relative;
-	background-color: rgb(235 185 118);
-	font-family: system-ui, sans-serif;
+	/* background-color: palegreen; */
+	/* background-color: rgba(250, 173, 20, 0.16); */
+	/* font-family: system-ui, sans-serif; */
 }
 
 bizibuz-game > header,
@@ -35,6 +36,26 @@ bizibuz-game > footer {
 	transition: opacity 0.5s, backdrop-filter 0.5s, -webkit-backdrop-filter 0.5s;
 }
 
+bizibuz-game > header {
+	/* background-color: rgb(141 247 140); */
+	/* background-color: rgb(254 242 217); */
+	/* background-color: rgb(217, 207, 186); */
+	padding: 0;
+	justify-content: normal;
+}
+
+bizibuz-game > header > div {
+	padding-top: 20px;
+}
+
+bizibuz-game > header > div > p {
+	margin: 10px 0;
+}
+
+bizibuz-game > header > img {
+	padding-top: 20px;
+}
+
 bizibuz-game > header.off,
 bizibuz-game > footer.off {
 	opacity: 0;
@@ -52,7 +73,7 @@ bizibuz-game > header > p:last-child {
 	opacity: 0.5;
 }
 
-bizibuz-game > main {
+bizibuz-game > main > #game-area {
 	position: relative;
 	display: block;
 	aspect-ratio: calc(1400 / 980);
@@ -64,20 +85,22 @@ bizibuz-game > main {
 }
 
 @media (min-aspect-ratio: 1400 / 980) {
-	bizibuz-game > main {
-		height: 100vh;
+	bizibuz-game > main > #game-area {
+		/* width: 600px; */
+		height: 400px;
 	}
 }
 
 @media (max-aspect-ratio: 1400 / 980) {
-	bizibuz-game > main {
-		width: 100vw;
+	bizibuz-game > main > #game-area {
+		/* width: 800px; */
+		height: 400px;
 	}
 }
 
-bizibuz-game > main > div {
-	width: 30px;
-	height: 20vmin;
+bizibuz-game > main > #game-area > div {
+	width: 20px;
+	height: 10px;
 	background-color: white;
 	position: absolute;
 	top: 50%;
@@ -87,29 +110,91 @@ bizibuz-game > main > div {
 	border-radius: 10px;
 }
 
-bizibuz-game > main > div.paddle-1 {
+bizibuz-game > main > #game-area > div.paddle-1 {
 	left: 0;
 }
 
-bizibuz-game > main > div.paddle-2 {
+bizibuz-game > main > #game-area > div.paddle-2 {
 	right: 0;
 }
 
-bizibuz-game > main > img {
-	height: 10vmin;
-	width: 10vmin;
+bizibuz-game > main > #game-area > img {
+	height: 7vmin;
+	width: 7vmin;
 	filter: drop-shadow(0 2px 5px black);
 	overflow: visible;
 	transform-origin: center;
 	position: absolute;
 	top: 50%;
-	margin-top: -5vmin;
+	margin-top: -3.5vmin;
 	left: 50%;
-	margin-left: -5vmin;
+	margin-left: -3.5vmin;
 	transition: opacity 1s;
 }
 
-bizibuz-game > main > img.off {
+bizibuz-game > main > #game-area > img.off {
 	transform: scale(0);
 	opacity: 0;
+}
+
+#step-before-play {
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(254 242 217);
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button {
+	background: #fdcc33;
+	padding: 8px 15px;
+	font-weight: 500;
+	border-radius: 10px;
+	border: none;
+}
+
+button:hover{
+	cursor: pointer;
+}
+
+#instruction_txt, #instruction_end_txt {
+	font-size: 18px;
+	width: 660px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.d-none, .hidden {
+	display: none !important;
+}
+
+.visuallyhidden {
+  opacity: 0 !important;
+}
+
+#step-play {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#step-play > #game-area {
+	margin-bottom: 30px;
+}
+
+#step-after-trial > #popup, #step-after-final > #popup {
+	background: white;
+	width: 300px;
+	padding: 20px;
+	text-align: center;
+	border: 3px solid #fdcc33;
+	border-radius: 20px;
+}
+
+#step-after-trial > #popup > p, #step-after-final > #popup > p {
+	margin-bottom: 10px;
 }

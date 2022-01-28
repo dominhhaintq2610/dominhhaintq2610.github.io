@@ -86,14 +86,14 @@ bizibuz-game > main > #game-area {
 
 @media (min-aspect-ratio: 1400 / 980) {
 	bizibuz-game > main > #game-area {
-		width: 800px;
+		/* width: 600px; */
 		height: 400px;
 	}
 }
 
 @media (max-aspect-ratio: 1400 / 980) {
 	bizibuz-game > main > #game-area {
-		width: 800px;
+		/* width: 800px; */
 		height: 400px;
 	}
 }
@@ -164,6 +164,7 @@ button:hover{
 	font-size: 18px;
 	width: 660px;
 	margin: 0 auto;
+	text-align: center;
 }
 
 .d-none, .hidden {

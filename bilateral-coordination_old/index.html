@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bizibuz Game</title>
+		<meta name="description" content="Bizibuz Game" />
+		<meta charset="UTF-8" />
+		<meta name="version" content="1.0.0" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="stylesheet" href="./components/bizibuz-game/bizibuz-game.css" />
+		<script src="./components/import-element/import-element.js"></script>
+		<script src="./components/bizibuz-game/levels.js"></script>
+		<script src="./components/bizibuz-game/bizibuz-game.js"></script>
+	</head>
+
+	<body>
+		<template data-is="bizibuz-game">
+			<header>
+				<img src="./assets/tutorial.jpeg" style="width: 100%;"/>
+				<p>Press any key to continue.</p>
+			</header>
+			<main>
+				<img src="./assets/basketball.png" />
+				<div class="paddle-1"></div>
+				<div class="paddle-2"></div>
+			</main>
+			<footer class="off">
+				<p>You've completed the game, congratulations!</p>
+			</footer>
+		</template>
+		<bizibuz-game></bizibuz-game>
+	</body>
+</html>

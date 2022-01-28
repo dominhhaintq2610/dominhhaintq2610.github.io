@@ -14,16 +14,44 @@
 
 	<body>
 		<template data-is="bizibuz-game">
-			<header>
-				<img src="./assets/tutorial.jpeg" style="width: 100%;"/>
-				<p>Press any key to continue.</p>
+			<section id="step-before-play" class="hidden">
+				<button id="btn-play" type="button">PLAY</button>
+			</section>
+			<header id="step-instructions" class="hidden">
+				<img id="football_gif" src="./assets/football.gif" style="width: 25%; margin: 0 auto;"/>
+				<div id="instruction_txt">
+					<p>Now use both left and right hands. Place them on the keyboard. </p>
+					<p>Use your thumbs and first fingers on the coloured keys to move the paddles up and down. </p>
+					<p>Hit the ball with the paddle!</p>
+				</div>
+				<div id="instruction_end_txt" class="hidden">
+					<p>Now it’s your turn</p>
+					<p>Press any key to continue.</p>
+				</div>
+				<img id="keyboard_gif" src="./assets/keyboard.gif" style="width: 60%; margin: 0 auto;"/>
 			</header>
-			<main>
-				<img src="./assets/basketball.png" />
-				<div class="paddle-1"></div>
-				<div class="paddle-2"></div>
+			<main id="step-play" class="hidden">
+				<section id="game-area">
+					<img src="./assets/football.png" />
+					<div class="paddle-1"></div>
+					<div class="paddle-2"></div>
+				</section>
+				<img src="./assets/tutorial.png" style="width: 568px; margin: 0 auto;"/>
 			</main>
-			<footer class="off">
+			<section id="step-after-trial" class="hidden">
+				<div id="popup">
+					<p>Trial game score: 99</p>
+					<p>Tip: Try to move the paddles faster!</p>
+					<button id="btn-play-final" type="button">Final game next</button>
+				</div>
+			</section>
+			<section id="step-after-final" class="hidden">
+				<div id="popup">
+					<p>Game over</p>
+					<p>Thank you for playing!</p>
+				</div>
+			</section>
+			<footer id="step-after-play" class="hidden off">
 				<p>You've completed the game, congratulations!</p>
 			</footer>
 		</template>

@@ -86,3 +86,92 @@ const LEVELS = [
         ],
     },
 ]
+
+// const LEVELS = [
+//     {
+//         CAR_SETTING: {
+//             x: 98,
+//             y: 590,
+//             w: 36,
+//             h: 72,
+//             i: 'car-green.svg',
+//         },
+//         PARKING_SETTING: {
+//             x: 622,
+//             y: 230,
+//             w: 36,
+//             h: 36,
+//             i: 'parking-green.svg',
+//         },
+//         MAP_SETTING: [
+//             {x: 116, y: 570},
+//             {x: 116, y: 90},
+//             {x: 136, y: 70, cp1x: 116, cp1y: 70, cp2x: 120, cp2y: 70, isCurve: true},
+//             {x: 460, y: 70},
+//             {x: 520, y: 110, cp1x: 520, cp1y: 70, cp2x: 520, cp2y: 80, isCurve: true},
+//             {x: 520, y: 220},
+//             {x: 550, y: 250, cp1x: 520, cp1y: 250, cp2x: 540, cp2y: 250, isCurve: true},
+//             {x: 620, y: 250},
+//             {x: 640, y: 230, cp1x: 640, cp1y: 250, cp2x: 640, cp2y: 230, isCurve: true},
+//             {x: 640, y: 180},
+//         ]
+//     },
+//     {
+//         CAR_SETTING: {
+//             x: 98,
+//             y: 490,
+//             w: 36,
+//             h: 72,
+//             i: 'car-green.svg',
+//         },
+//         PARKING_SETTING: {
+//             x: 622,
+//             y: 130,
+//             w: 36,
+//             h: 36,
+//             i: 'parking-green.svg',
+//         },
+//         MAP_SETTING: [
+//             {x: 116, y: 470},
+//             {x: 116, y: 80},
+//             {x: 136, y: 60, cp1x: 116, cp1y: 80, cp2x: 120, cp2y: 60, isCurve: true},
+//             {x: 460, y: 60},
+//             {x: 520, y: 100, cp1x: 520, cp1y: 60, cp2x: 520, cp2y: 70, isCurve: true},
+//             {x: 520, y: 210},
+//             {x: 550, y: 240, cp1x: 520, cp1y: 240, cp2x: 540, cp2y: 240, isCurve: true},
+//             {x: 620, y: 240},
+//             {x: 640, y: 220, cp1x: 640, cp1y: 240, cp2x: 640, cp2y: 220, isCurve: true},
+//             {x: 640, y: 180},
+//         ]
+//     },
+//     {
+//         CAR_SETTING: {
+//             x: 98,
+//             y: 490,
+//             w: 36,
+//             h: 72,
+//             i: 'car-red.svg',
+//         },
+//         PARKING_SETTING: {
+//             x: 680,
+//             y: 80,
+//             w: 36,
+//             h: 36,
+//             i: 'parking-red.svg',
+//         },
+//         MAP_SETTING: [
+//             {x: 116, y: 470},
+//             {x: 116, y: 200},
+//             {x: 136, y: 180, cp1x: 116, cp1y: 200, cp2x: 120, cp2y: 180, isCurve: true},
+//             {x: 460, y: 180},
+//             {x: 460, y: 224, cp1x: 490, cp1y: 180, cp2x: 490, cp2y: 224, isCurve: true},
+//             {x: 195, y: 224},
+//             {x: 160, y: 260, cp1x: 160, cp1y: 224, cp2x: 160, cp2y: 260, isCurve: true},
+//             {x: 160, y: 360},
+//             {x: 180, y: 380, cp1x: 160, cp1y: 360, cp2x: 160, cp2y: 380, isCurve: true},
+//             {x: 680, y: 380},
+//             {x: 700, y: 354, cp1x: 700, cp1y: 380, cp2x: 700, cp2y: 354, isCurve: true},
+//             {x: 700, y: 130},
+//         ],
+//     },
+// ]

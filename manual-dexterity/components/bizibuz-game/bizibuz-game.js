@@ -42,7 +42,7 @@ window.customElements.define(
 		#BALL;
 		#FIELD;
 
-		MAP_WIDTH = 800;
+		MAP_WIDTH = 568;
 		MAP_HEIGHT = 400;
 
 		constructor() {
@@ -65,9 +65,9 @@ window.customElements.define(
 			this.#ATTEMPTS_LEFT = LEVEL.maxAttempts;
 
 			// this.setupStepBeforePlay();
-			this.setupStepPlay();
+			// this.setupStepPlay();
 			// this.setupStepAfterTrial();
-			// this.setupStepInstructions();
+			this.setupStepInstructions();
 		}
 
 		movepaddle() {
@@ -247,7 +247,7 @@ window.customElements.define(
 				});
 			}
 
-			document.getElementById('keyboard_gif').src = './assets/tutorial.jpeg'
+			document.getElementById('keyboard_gif').src = './assets/tutorial.png'
 		
 			this.setupPressEventListenerToPlay()
 		}

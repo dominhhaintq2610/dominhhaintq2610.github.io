@@ -1,0 +1,25 @@
+::-webkit-scrollbar {
+	display: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	line-height: 100%;
+	box-sizing: border-box;
+}
+
+[hidden] {
+	display: none;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	user-select: none;
+	-webkit-user-select: none;
+	position: relative;
+}

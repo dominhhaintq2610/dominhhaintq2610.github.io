@@ -11,7 +11,8 @@
 	<body style="background-color: rgba(250, 173, 20, 0.16);">
     <main>
       <!-- <iframe id="game-frame" src="./index.html" width="100%" height="200px" style="border: none;"></iframe> -->
-      <img id="football_gif" src="./assets/football.gif" alt="" style="width: 280px; margin: 0 auto; display: block;">
+      <!-- <img id="football_gif" src="./assets/football.gif" alt="" style="width: 280px; margin: 0 auto; display: block;"> -->
+      <img id="football_gif" src="./assets/basketball.gif" alt="" style="width: 280px; margin: 0 auto; display: block;">
       <div style="font-size: 14px; width: 660px; margin: 0 auto;">
         <p>Choose your preferred hand. Place it on the keyboard. </p>
         <p>Use your thumb and first finger on the coloured keys to move the paddles up and down. </p>
@@ -21,7 +22,17 @@
       <section id="keyboard-area" style="width: 60%; position: relative; margin: 0 auto;">
         <img id="keyboard" src="./assets/keyboard01.png" style="width: 100%;"/>
         <img id="mouse" src="./assets/right-hand.png" 
-        style="width: 90px; position: absolute; top: 80px; left: 250px; transform: rotate(0deg); transition: 1s ease-in;"/>
+          style="width: 90px; 
+          position: absolute; 
+          top: 50px; 
+          left: 280px; 
+          transform: rotate(10deg); transition: 1s ease-in;"/>
+        <img id="mouseL" src="./assets/left-hand.png" 
+          style="width: 90px; 
+          position: absolute; 
+          top: 50px; 
+          left: 60px; 
+          transform: rotate(-10deg); transition: 1s ease-in;"/>
       </section>
       <button onclick="play()">Play</button>
       <audio id="audio" controls>
@@ -77,38 +88,38 @@
         if (mousePositions[mousePosition].stop == undefined || !mousePositions[mousePosition].stop) {
           switch (mousePositions[mousePosition].press) {
             case 'D':
-              mouse.style.transform = 'rotate(-20deg)'
-              mouse.style.left = `${BTN_D.x}px`;
-              mouse.style.top = `${BTN_D.y}px`;
+              // mouse.style.transform = 'rotate(-20deg)'
+              // mouse.style.left = `${BTN_D.x}px`;
+              // mouse.style.top = `${BTN_D.y}px`;
               keyboard.src = `./assets/keyboardD.png`;
               break;
             case 'E':
-              mouse.style.transform = 'rotate(-20deg)'
-              mouse.style.left = `${BTN_E.x}px`;
-              mouse.style.top = `${BTN_E.y}px`;
+              // mouse.style.transform = 'rotate(-20deg)'
+              // mouse.style.left = `${BTN_E.x}px`;
+              // mouse.style.top = `${BTN_E.y}px`;
               keyboard.src = `./assets/keyboardE.png`;
               break;
             case 'I':
-              mouse.style.transform = 'rotate(10deg)'
-              mouse.style.left = `${BTN_I.x}px`;
-              mouse.style.top = `${BTN_I.y}px`;
+              // mouse.style.transform = 'rotate(10deg)'
+              // mouse.style.left = `${BTN_I.x}px`;
+              // mouse.style.top = `${BTN_I.y}px`;
               keyboard.src = `./assets/keyboardI.png`;
               break;
             case 'J':
-              mouse.style.transform = 'rotate(10deg)'
-              mouse.style.left = `${BTN_J.x}px`;
-              mouse.style.top = `${BTN_J.y}px`;
+              // mouse.style.transform = 'rotate(10deg)'
+              // mouse.style.left = `${BTN_J.x}px`;
+              // mouse.style.top = `${BTN_J.y}px`;
               keyboard.src = `./assets/keyboardJ.png`;
               break;
             case 'MOVE_RIGHT':
-              mouse.style.transform = 'rotate(10deg)'
-              mouse.style.left = `${BTN_I.x}px`;
-              mouse.style.top = `${BTN_I.y}px`;
+              // mouse.style.transform = 'rotate(10deg)'
+              // mouse.style.left = `${BTN_I.x}px`;
+              // mouse.style.top = `${BTN_I.y}px`;
               break;
             case 'MOVE_LEFT':
-              mouse.style.transform = 'rotate(-20deg)'
-              mouse.style.left = `${BTN_E.x}px`;
-              mouse.style.top = `${BTN_E.y}px`;
+              // mouse.style.transform = 'rotate(-20deg)'
+              // mouse.style.left = `${BTN_E.x}px`;
+              // mouse.style.top = `${BTN_E.y}px`;
               break;
             default:
               keyboard.src = `./assets/keyboard01.png`;

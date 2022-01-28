@@ -61,7 +61,8 @@ bizibuz-game > main {
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-position: center;
-	background-image: url(../../assets/football-field.svg);
+	/* background-image: url(../../assets/football-field.svg); */
+	background-image: url(../../assets/basketball-field.png);
 	z-index: 2;
 }
 

@@ -165,7 +165,9 @@ function findxy(res, e) {
     let px = e.clientX - gameBound.offsetLeft,
         py = e.clientY - gameBound.offsetTop;
 
+    console.log(`${px}-${py}`)
     if (res == 'down' && this.isMouseOnCar(px, py)) {
+        console.log('down')
         pressCar = true;
         prevX = px;
         prevY = py;
@@ -500,6 +502,6 @@ function playAudio() {
 }
 
 function nextGame() {
-    this.submitGame();
-    // window.parent.nextGame();
+    // this.submitGame();
+    window.parent.nextGame();
 }

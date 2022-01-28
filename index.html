@@ -18,6 +18,7 @@
 			html {
 				height: 100%;
 				width: 100%;
+				/* zoom: 80%; */
 			}
 			body {
 				/* background-color: #e8c562; */
@@ -75,7 +76,7 @@
 		<script>
 			document.querySelector("iframe").focus();
 			const urlSearchParams = new URLSearchParams(window.location.search);
-    	const params = Object.fromEntries(urlSearchParams.entries());
+    		const params = Object.fromEntries(urlSearchParams.entries());
 			// document.getElementById('game-frame').src = `./${params.game}-instruction/instruction.html?level=${params.level}`
 			document.getElementById('game-frame').src = `./${params.game}/index.html?level=${params.level}`
 

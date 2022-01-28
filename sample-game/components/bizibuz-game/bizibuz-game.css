@@ -1,0 +1,115 @@
+@import "./normalize.css";
+
+:root {
+	font-size: 2vmin;
+}
+
+bizibuz-game {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	background-color: palegreen;
+	font-family: system-ui, sans-serif;
+}
+
+bizibuz-game > header,
+bizibuz-game > footer {
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 10%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	background-color: rgba(255, 255, 255, 0.5);
+	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(20px);
+	cursor: pointer;
+	transition: opacity 0.5s, backdrop-filter 0.5s, -webkit-backdrop-filter 0.5s;
+}
+
+bizibuz-game > header.off,
+bizibuz-game > footer.off {
+	opacity: 0;
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+}
+
+bizibuz-game > header > p,
+bizibuz-game > footer > p {
+	margin: 1rem;
+	font-size: 1.75rem;
+}
+
+bizibuz-game > header > p:last-child {
+	opacity: 0.5;
+}
+
+bizibuz-game > main {
+	position: relative;
+	display: block;
+	aspect-ratio: calc(1400 / 980);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	background-image: url(../../assets/football-field.svg);
+	z-index: 2;
+}
+
+@media (min-aspect-ratio: 1400 / 980) {
+	bizibuz-game > main {
+		height: 100vh;
+	}
+}
+
+@media (max-aspect-ratio: 1400 / 980) {
+	bizibuz-game > main {
+		width: 100vw;
+	}
+}
+
+bizibuz-game > main > div {
+	width: 30px;
+	height: 20vmin;
+	background-color: white;
+	position: absolute;
+	top: 50%;
+	margin-top: -10vmin;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.75);
+	transform-origin: center;
+	border-radius: 10px;
+}
+
+bizibuz-game > main > div.paddle-1 {
+	left: 0;
+}
+
+bizibuz-game > main > div.paddle-2 {
+	right: 0;
+}
+
+bizibuz-game > main > img {
+	height: 10vmin;
+	width: 10vmin;
+	filter: drop-shadow(0 2px 5px black);
+	overflow: visible;
+	transform-origin: center;
+	position: absolute;
+	top: 50%;
+	margin-top: -5vmin;
+	left: 50%;
+	margin-left: -5vmin;
+	transition: opacity 1s;
+}
+
+bizibuz-game > main > img.off {
+	transform: scale(0);
+	opacity: 0;
+}
